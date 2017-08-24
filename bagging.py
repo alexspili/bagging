@@ -1,7 +1,7 @@
 from bokeh.io import curdoc
 from bokeh.layouts import column, row
 from bokeh.plotting import ColumnDataSource, Figure
-from bokeh.models.widgets import Slider
+from bokeh.models.widgets import Slider, Div
 import numpy as np
 from numpy import random
 from sklearn.linear_model import LinearRegression
@@ -42,6 +42,12 @@ p.multi_line(xs='xs', ys='ys', source=source_lines, color="pink", line_width=0)
 source_avg = ColumnDataSource(data=dict(x=[], y=[]))
 p.line(x='x', y='y', source=source_avg, color="red", line_width=2)
 
+# Basic instructions
+div_instr = Div(text="<font color=black>\
+<br> <font color=blue>The blue line </font>is the “true” curve we are trying to approximate.\
+<br> <font color=blue><b>The blue dots </b></font>are points drawn from the blue curve with an added random error.\
+<br> <font color=pink>Each pink line</font> is the polynomial regression fit over a randomly drawn (with replacement) subset of points.\
+<br> <font color=red><b>The thick red line </b></font>is the average of the pink lines.</font>", width=800, height=100)
 
 def update(attrname, old, new):
     D=slider_degrees.value  # number of degrees for the polynomial
@@ -81,5 +87,5 @@ def update(attrname, old, new):
 for w in [slider_degrees, slider_lines, slider_points]:
     w.on_change('value', update)
 
-layout = column(p, slider_degrees, slider_lines, slider_points)
+layout = column(div_instr, p, slider_degrees, slider_lines, slider_points)
 curdoc().add_root(layout)

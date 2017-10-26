@@ -5,4 +5,4 @@ To view this, click [here] or download bagging.py and run `bokeh serve --show ba
 
 [![Bagging](https://github.com/alexspili/bagging/blob/master/bagging.png "Bootstrap AGGregatING")][here]
 
-[here]: http://34.212.227.255:5006
+[here]: http://alexspiliotopoulos.com/aws/bagging
